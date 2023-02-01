@@ -1,10 +1,13 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import logger from 'use-reducer-logger';
 import axios from 'axios';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Product from '../components/Product';
+import LoadingBox from '../components/LoadingBox';
+
 import { Helmet } from 'react-helmet-async';
+import MessageBox from '../components/MessageBox';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -46,9 +49,9 @@ export default function HomePage() {
       <h1>Featured Products</h1>
       <div className="products">
         {loading ? (
-          <div>Loading...</div>
+          <LoadingBox />
         ) : error ? (
-          <div>{error}</div>
+          <MessageBox varian="danger">{error}</MessageBox>
         ) : (
           <Row>
             {products.map((product) => (
