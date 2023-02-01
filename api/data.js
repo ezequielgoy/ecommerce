@@ -42,7 +42,7 @@ const data = {
       category: 'test',
       image: '/images/p2.jpg',
       price: 60,
-      countInStock: 10,
+      countInStock: 0,
       brand: 'test',
       rating: 4,
       numRevies: 24,
