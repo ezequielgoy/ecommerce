@@ -1,6 +1,7 @@
 const data = {
   products: [
     {
+      _id: '1',
       name: 'model1',
       slug: 'model-1',
       category: 'test',
@@ -13,6 +14,7 @@ const data = {
       description: 'product model description',
     },
     {
+      _id: '2',
       name: 'model2',
       slug: 'model-2',
       category: 'test',
@@ -25,6 +27,7 @@ const data = {
       description: 'product model 2 description',
     },
     {
+      _id: '3',
       name: 'model3',
       slug: 'model-3',
       category: 'test',
@@ -37,6 +40,7 @@ const data = {
       description: 'product model description',
     },
     {
+      _id: '4',
       name: 'model4',
       slug: 'model-4',
       category: 'test',
