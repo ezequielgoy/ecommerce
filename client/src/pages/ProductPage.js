@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/esm/Col';
 import Row from 'react-bootstrap/esm/Row';
 import Card from 'react-bootstrap/esm/Card';
 import Badge from 'react-bootstrap/esm/Badge';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import ListGroup from 'react-bootstrap/esm/ListGroup';
 import ListGroupItem from 'react-bootstrap/esm/ListGroupItem';
 import Button from 'react-bootstrap/esm/Button';
