@@ -9,7 +9,6 @@ import { Store } from '../Store';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/esm/Card';
 import axios from 'axios';
-import Product from '../components/Product';
 
 function CartPage() {
   const navigate = useNavigate();
