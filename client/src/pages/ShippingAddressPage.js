@@ -1,22 +1,28 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/esm/Button';
-import { Store } from '../Store';
+import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
+import { Store } from '../Store';
 import CheckOutSteps from '../components/CheckOutSteps';
 
-export default function ShippingAddressScreen() {
+export default function ShippingAddressPage() {
   const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {
     userInfo,
     cart: { shippingAddress },
   } = state;
+
   const [fullName, setFullName] = useState(shippingAddress.fullName || '');
   const [address, setAddress] = useState(shippingAddress.address || '');
   const [city, setCity] = useState(shippingAddress.city || '');
   const [postal, setPostal] = useState(shippingAddress.postal || '');
+  useEffect(() => {
+    if (!userInfo) {
+      navigate('/signin?redirect=/shipping');
+    }
+  }, [userInfo, navigate]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -40,21 +46,15 @@ export default function ShippingAddressScreen() {
     );
     navigate('/payment');
   };
-
-  useEffect(() => {
-    if (!userInfo) {
-      navigate('/signin?redirect=/shipping');
-    }
-  }, [userInfo, navigate]);
-
   return (
     <div>
       <Helmet>
         <title>Shipping Address</title>
       </Helmet>
+
       <CheckOutSteps step1 step2></CheckOutSteps>
       <div className="container small-container">
-        <h1>Shipping Address</h1>
+        <h1 className="my-3">Shipping Address</h1>
         <Form onSubmit={submitHandler}>
           <Form.Group className="mb-3" controlId="fullName">
             <Form.Label>Full Name</Form.Label>
@@ -81,7 +81,7 @@ export default function ShippingAddressScreen() {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="postal">
-            <Form.Label>Postal</Form.Label>
+            <Form.Label>Postal Code</Form.Label>
             <Form.Control
               value={postal}
               onChange={(e) => setPostal(e.target.value)}

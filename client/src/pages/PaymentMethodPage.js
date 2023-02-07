@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Button from 'react-bootstrap/esm/Button';
 import { Helmet } from 'react-helmet-async';
-import Form from 'react-bootstrap/esm/Form';
+import { useNavigate } from 'react-router-dom';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 import CheckOutSteps from '../components/CheckOutSteps';
 import { Store } from '../Store';
-import { useNavigate } from 'react-router-dom';
 
-function PaymentMethodPage() {
-  const { state, dispatch: ctxDispatch } = useContext(Store);
+export default function PaymentMethodPage() {
   const navigate = useNavigate();
+  const { state, dispatch: ctxDispatch } = useContext(Store);
   const {
     cart: { shippingAddress, paymentMethod },
   } = state;
@@ -16,12 +16,12 @@ function PaymentMethodPage() {
   const [paymentMethodName, setPaymentMethod] = useState(
     paymentMethod || 'PayPal'
   );
+
   useEffect(() => {
     if (!shippingAddress.address) {
       navigate('/shipping');
     }
   }, [shippingAddress, navigate]);
-
   const submitHandler = (e) => {
     e.preventDefault();
     ctxDispatch({ type: 'SAVE_PAYMENT_METHOD', payload: paymentMethodName });
@@ -35,7 +35,7 @@ function PaymentMethodPage() {
         <Helmet>
           <title>Payment Method</title>
         </Helmet>
-        <h1 className="my-3">Paymen Method</h1>
+        <h1 className="my-3">Payment Method</h1>
         <Form onSubmit={submitHandler}>
           <div className="mb-3">
             <Form.Check
@@ -65,5 +65,3 @@ function PaymentMethodPage() {
     </div>
   );
 }
-
-export default PaymentMethodPage;
